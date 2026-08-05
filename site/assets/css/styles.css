@@ -100,10 +100,28 @@ a {
 }
 
 .site-header__logo {
-  font-size: 1.5rem;
-  font-weight: 300;
-  letter-spacing: 0.02em;
-  color: var(--color-fg);
+  display: block;
+  line-height: 0;
+}
+
+.site-header__logo-img {
+  display: block;
+  height: 40px;
+  width: auto;
+}
+
+/* Por defecto (header sólido) se ve el logo negro; el blanco se
+   reserva para cuando el header está transparente sobre el hero. */
+.site-header__logo-img--white {
+  display: none;
+}
+
+.site-header.is-transparent .site-header__logo-img--white {
+  display: block;
+}
+
+.site-header.is-transparent .site-header__logo-img--black {
+  display: none;
 }
 
 .site-header__nav {
@@ -258,6 +276,13 @@ a {
   font-size: 1.5rem;
   font-weight: 300;
   letter-spacing: 0.02em;
+  margin: 0 0 0.75rem;
+}
+
+.site-footer__logo {
+  display: block;
+  height: 44px;
+  width: auto;
   margin: 0 0 0.75rem;
 }
 
