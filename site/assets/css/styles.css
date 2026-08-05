@@ -18,7 +18,7 @@
   --color-secondary-fg: hsl(20, 20%, 15%);
 
   --color-muted: hsl(20, 25%, 96%);
-  --color-muted-fg: hsl(20, 10%, 45%);
+  --color-muted-fg: hsl(20, 10%, 38%); /* oscurecido: hsl(...45%) daba ~4.3:1 sobre --color-warm-bg, por debajo del mínimo AA (4.5:1) */
 
   --color-blush: hsl(15, 34%, 74%); /* #d4b2a7 — color de fondo del logo */
   --color-blush-fg: #ffffff;
@@ -59,6 +59,64 @@ img {
 a {
   color: inherit;
   text-decoration: none;
+}
+
+/* ---------- Accesibilidad ---------- */
+
+/* Foco visible y consistente en cualquier fondo (claro, oscuro o
+   sobre foto): anillo blanco + halo oscuro, uno de los dos siempre
+   contrasta. Sólo aparece con teclado (:focus-visible), no al
+   hacer click con mouse. */
+a:focus-visible,
+button:focus-visible,
+[tabindex]:focus-visible {
+  outline: 2px solid #ffffff;
+  outline-offset: 2px;
+  box-shadow: 0 0 0 4px rgba(0, 0, 0, 0.55);
+  border-radius: 1px;
+}
+
+.skip-link {
+  position: absolute;
+  top: -3rem;
+  left: 1rem;
+  z-index: 100;
+  background: var(--color-fg);
+  color: #ffffff !important;
+  padding: 0.75rem 1.25rem;
+  font-size: 0.875rem;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
 }
 
 .container {
@@ -157,14 +215,17 @@ a {
   font-weight: 500;
 }
 
-/* Botón hamburguesa (sólo mobile) */
+/* Botón hamburguesa (sólo mobile). 44x44 para cumplir el tamaño
+   mínimo de objetivo táctil recomendado; las líneas mantienen su
+   ancho visual propio en vez de llenar el botón entero. */
 .site-header__toggle {
   display: none;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
   gap: 5px;
-  width: 32px;
-  height: 32px;
+  width: 44px;
+  height: 44px;
   padding: 0;
   border: none;
   background: none;
@@ -173,7 +234,7 @@ a {
 
 .site-header__toggle span {
   display: block;
-  width: 100%;
+  width: 22px;
   height: 2px;
   background: var(--color-fg);
   transition: transform 0.2s ease, opacity 0.2s ease, background-color 0.2s ease;
@@ -230,6 +291,10 @@ a {
     width: 100%;
     justify-content: center;
     margin-top: 0.75rem;
+    /* Más específico que ".site-header__nav a" de arriba: sin esto,
+       esa regla (con !important también) gana por especificidad y
+       el botón queda con texto/ícono negro sobre el fondo marrón. */
+    color: var(--color-accent-fg) !important;
   }
 
   /* Con el menú abierto, forzamos header sólido para que el
@@ -301,6 +366,10 @@ a {
 
 .site-footer__social a {
   display: inline-flex;
+  /* Padding + margen negativo: agranda el área táctil (~30x30) sin
+     mover el ícono ni el espaciado visual entre ellos. */
+  padding: 6px;
+  margin: -6px;
   color: var(--color-muted-fg);
   transition: color 0.2s ease;
 }
@@ -517,7 +586,9 @@ main {
 .collection-tile__overlay {
   position: absolute;
   inset: 0;
-  background: rgba(0, 0, 0, 0.2);
+  /* Oscurecido (antes 0.2/0.3): con fotos claras, el texto blanco de
+     encima no llegaba a 4.5:1 de contraste. */
+  background: rgba(0, 0, 0, 0.4);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -526,14 +597,14 @@ main {
 }
 
 .collection-tile:hover .collection-tile__overlay {
-  background: rgba(0, 0, 0, 0.3);
+  background: rgba(0, 0, 0, 0.5);
 }
 
 .collection-tile__eyebrow {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
-  color: rgba(255, 255, 255, 0.8);
+  color: #ffffff;
 }
 
 .collection-tile__title {

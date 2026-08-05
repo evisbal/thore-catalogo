@@ -25,6 +25,7 @@
     menuOpen = open;
     nav.classList.toggle("is-open", open);
     toggle.setAttribute("aria-expanded", String(open));
+    toggle.setAttribute("aria-label", open ? "Cerrar menú" : "Abrir menú");
     if (isTransparentPage) {
       if (open) {
         header.classList.add("force-solid");
@@ -45,6 +46,14 @@
       link.addEventListener("click", function () {
         setMenu(false);
       });
+    });
+
+    // Escape cierra el menú y devuelve el foco al botón que lo abrió.
+    document.addEventListener("keydown", function (e) {
+      if (e.key === "Escape" && menuOpen) {
+        setMenu(false);
+        toggle.focus();
+      }
     });
   }
 

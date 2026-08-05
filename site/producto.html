@@ -10,6 +10,8 @@
 </head>
 <body>
 
+  <a href="#main" class="skip-link">Saltar al contenido principal</a>
+
   <!-- ================= HEADER ================= -->
   <header class="site-header" data-header>
     <div class="site-header__bar">
@@ -21,7 +23,7 @@
         <span></span><span></span><span></span>
       </button>
 
-      <nav class="site-header__nav" data-nav>
+      <nav class="site-header__nav" data-nav aria-label="Principal">
         <a href="catalogo.html" aria-current="page">Catálogo</a>
         <a href="nosotros.html">Nosotros</a>
         <a href="contacto.html">Contacto</a>
@@ -33,10 +35,10 @@
     </div>
   </header>
 
-  <main>
+  <main id="main">
 
     <section class="section">
-      <nav class="breadcrumb">
+      <nav class="breadcrumb" aria-label="Miga de pan">
         <a href="catalogo.html">Catálogo</a>
         <span class="breadcrumb__sep">›</span>
         <span class="breadcrumb__current">Producto 1</span>
@@ -86,21 +88,21 @@
       <div class="related__grid">
         <a href="producto.html" class="product-card">
           <div class="product-card__image">
-            <img src="assets/img/productos/classic-set.jpg" alt="Producto relacionado" loading="lazy" />
+            <img src="assets/img/productos/classic-set.jpg" alt="Producto 2" loading="lazy" />
           </div>
           <h3 class="product-card__title">Producto 2</h3>
           <p class="product-card__price">$50.00</p>
         </a>
         <a href="producto.html" class="product-card">
           <div class="product-card__image">
-            <img src="assets/img/productos/country-feast-set.jpg" alt="Producto relacionado" loading="lazy" />
+            <img src="assets/img/productos/country-feast-set.jpg" alt="Producto 3" loading="lazy" />
           </div>
           <h3 class="product-card__title">Producto 3</h3>
           <p class="product-card__price">$50.00</p>
         </a>
         <a href="producto.html" class="product-card">
           <div class="product-card__image">
-            <img src="assets/img/productos/golden-blush-cup.jpg" alt="Producto relacionado" loading="lazy" />
+            <img src="assets/img/productos/golden-blush-cup.jpg" alt="Producto 5" loading="lazy" />
           </div>
           <h3 class="product-card__title">Producto 5</h3>
           <p class="product-card__price">$50.00</p>
