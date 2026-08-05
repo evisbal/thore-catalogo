@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Producto 1 | Thoré</title>
+  <meta name="description" content="Detalle del producto — consultá disponibilidad y precio." />
+  <link rel="stylesheet" href="assets/css/styles.css" />
+</head>
+<body>
+
+  <!-- ================= HEADER ================= -->
+  <header class="site-header" data-header>
+    <div class="site-header__bar">
+      <a href="index.html" class="site-header__logo">Thoré</a>
+
+      <button class="site-header__toggle" data-nav-toggle aria-label="Abrir menú" aria-expanded="false">
+        <span></span><span></span><span></span>
+      </button>
+
+      <nav class="site-header__nav" data-nav>
+        <a href="catalogo.html" aria-current="page">Catálogo</a>
+        <a href="nosotros.html">Nosotros</a>
+        <a href="contacto.html">Contacto</a>
+        <a href="https://wa.me/000000000000" class="site-header__cta" target="_blank" rel="noopener noreferrer">
+          Consultar
+        </a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="section">
+      <nav class="breadcrumb">
+        <a href="catalogo.html">Catálogo</a>
+        <span class="breadcrumb__sep">›</span>
+        <span class="breadcrumb__current">Producto 1</span>
+      </nav>
+
+      <div class="product-detail">
+
+        <div class="product-detail__image">
+          <img src="assets/img/productos/spring-blade.jpg" alt="Producto 1" />
+        </div>
+
+        <div>
+          <h1 class="product-detail__name">Producto 1</h1>
+          <p class="product-detail__price">$50.00</p>
+
+          <!-- Ejemplo de estado de disponibilidad, opcional por producto -->
+          <!-- <p class="product-detail__availability">Sólo 4 disponibles</p> -->
+
+          <p class="product-detail__description">
+            Descripción del producto: materiales, medidas, variantes y todo lo
+            que ayude a la persona a decidir. Este texto se reemplaza por la
+            descripción real de cada producto cuando se cargue en WooCommerce.
+          </p>
+
+          <!-- Modo catálogo: sin selector de cantidad ni "Agregar al carrito".
+               El botón lleva a WhatsApp con un mensaje pre-armado. -->
+          <a
+            href="https://wa.me/000000000000?text=Hola%2C%20me%20interesa%20el%20producto%3A%20Producto%201"
+            class="btn btn--accent btn--block"
+            target="_blank"
+            rel="noopener noreferrer"
+          >
+            Consultar por WhatsApp
+          </a>
+
+          <!-- Variante para cuando el producto está agotado:
+          <button class="btn btn--disabled btn--block" disabled>Agotado</button>
+          -->
+        </div>
+      </div>
+    </section>
+
+    <!-- ================= RELACIONADOS ================= -->
+    <section class="related">
+      <h2>También te puede interesar</h2>
+      <div class="related__grid">
+        <a href="producto.html" class="product-card">
+          <div class="product-card__image">
+            <img src="assets/img/productos/classic-set.jpg" alt="Producto relacionado" loading="lazy" />
+          </div>
+          <h3 class="product-card__title">Producto 2</h3>
+          <p class="product-card__price">$50.00</p>
+        </a>
+        <a href="producto.html" class="product-card">
+          <div class="product-card__image">
+            <img src="assets/img/productos/country-feast-set.jpg" alt="Producto relacionado" loading="lazy" />
+          </div>
+          <h3 class="product-card__title">Producto 3</h3>
+          <p class="product-card__price">$50.00</p>
+        </a>
+        <a href="producto.html" class="product-card">
+          <div class="product-card__image">
+            <img src="assets/img/productos/golden-blush-cup.jpg" alt="Producto relacionado" loading="lazy" />
+          </div>
+          <h3 class="product-card__title">Producto 5</h3>
+          <p class="product-card__price">$50.00</p>
+        </a>
+      </div>
+    </section>
+
+  </main>
+
+  <!-- ================= FOOTER ================= -->
+  <footer class="site-footer">
+    <div class="container site-footer__grid">
+      <div>
+        <h3>Thoré</h3>
+        <p>Descripción breve de la marca / rubro.</p>
+      </div>
+      <div class="site-footer__links">
+        <a href="catalogo.html">Catálogo</a>
+        <a href="nosotros.html">Nosotros</a>
+      </div>
+      <div class="site-footer__links">
+        <a href="contacto.html">Contacto</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="assets/js/header.js"></script>
+</body>
+</html>
