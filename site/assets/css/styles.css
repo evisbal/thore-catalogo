@@ -292,6 +292,23 @@ a {
   margin: 0;
 }
 
+.site-footer__social {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 1.25rem;
+}
+
+.site-footer__social a {
+  display: inline-flex;
+  color: var(--color-muted-fg);
+  transition: color 0.2s ease;
+}
+
+.site-footer__social a:hover {
+  color: var(--color-fg);
+}
+
 .site-footer__links {
   display: flex;
   flex-direction: column;
