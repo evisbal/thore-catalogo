@@ -9,7 +9,10 @@ function escapeHTML(str) {
 }
 
 function formatPrice(value) {
-  return "$" + Number(value).toFixed(2);
+  // Pesos colombianos: sin centavos, puntos como separador de miles
+  // (ej. $50.000). Se redondea al peso entero antes de formatear.
+  const rounded = Math.round(Number(value));
+  return "$" + rounded.toLocaleString("es-CO", { maximumFractionDigits: 0 });
 }
 
 function priceHTML(product) {
