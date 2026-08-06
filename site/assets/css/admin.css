@@ -1,0 +1,288 @@
+/* ============================================================
+   Panel de admin — reutiliza los tokens de styles.css (colores,
+   tipografía) pero con un layout más funcional, tipo herramienta
+   interna, no vidriera pública.
+   ============================================================ */
+
+.admin-body {
+  background: var(--color-warm-bg);
+  min-height: 100vh;
+}
+
+.admin-body--center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2rem;
+}
+
+.admin-login-card {
+  background: #fff;
+  padding: 3rem;
+  max-width: 24rem;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+  border: 1px solid var(--color-border);
+}
+
+.admin-login-card__logo {
+  height: 40px;
+  width: auto;
+  margin: 0 auto 0.5rem;
+}
+
+.admin-login-card h1 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  text-align: center;
+  margin: 0 0 0.5rem;
+}
+
+.admin-header {
+  background: #fff;
+  border-bottom: 1px solid var(--color-border);
+  padding: 1rem 1.5rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.admin-header__logo img {
+  height: 32px;
+  width: auto;
+  display: block;
+}
+
+.admin-header__right {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.admin-header__email {
+  font-size: 0.85rem;
+  color: var(--color-muted-fg);
+}
+
+.admin-main {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 2.5rem 1.5rem 5rem;
+}
+
+.admin-main__bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.admin-main__bar h1 {
+  font-size: 1.75rem;
+  font-weight: 300;
+  margin: 0;
+}
+
+.admin-table-wrap {
+  background: #fff;
+  border: 1px solid var(--color-border);
+  overflow-x: auto;
+}
+
+.admin-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.admin-table th,
+.admin-table td {
+  text-align: left;
+  padding: 0.85rem 1rem;
+  border-bottom: 1px solid var(--color-border);
+  white-space: nowrap;
+}
+
+.admin-table tbody tr:last-child td {
+  border-bottom: none;
+}
+
+.admin-table th {
+  color: var(--color-muted-fg);
+  font-weight: 500;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.admin-table__thumb {
+  width: 44px;
+  height: 44px;
+  object-fit: cover;
+  background: var(--color-warm-bg);
+  display: block;
+}
+
+.admin-table__actions {
+  display: flex;
+  gap: 1rem;
+}
+
+.admin-link-btn {
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 0.875rem;
+  color: var(--color-accent);
+  cursor: pointer;
+  text-decoration: underline;
+  font-family: inherit;
+}
+
+.admin-link-btn--danger {
+  color: #b0413e;
+}
+
+/* ---- Formulario / modal ---- */
+
+.admin-modal {
+  position: fixed;
+  inset: 0;
+  z-index: 200;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  padding: 2rem 1rem;
+  overflow-y: auto;
+}
+
+.admin-modal[hidden] {
+  display: none;
+}
+
+.admin-modal__backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(20, 15, 12, 0.5);
+}
+
+.admin-modal__panel {
+  position: relative;
+  background: #fff;
+  max-width: 32rem;
+  width: 100%;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.admin-modal__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.admin-modal__header h2 {
+  font-size: 1.25rem;
+  font-weight: 500;
+  margin: 0;
+}
+
+.admin-modal__close {
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  line-height: 1;
+  cursor: pointer;
+  color: var(--color-muted-fg);
+  padding: 0;
+}
+
+.admin-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.admin-field label {
+  font-size: 0.85rem;
+  font-weight: 500;
+}
+
+.admin-field input,
+.admin-field textarea,
+.admin-field select {
+  padding: 0.6rem 0.75rem;
+  border: 1px solid var(--color-border);
+  font-family: inherit;
+  font-size: 0.9rem;
+  background: #fff;
+  color: var(--color-fg);
+  width: 100%;
+}
+
+.admin-field input:focus,
+.admin-field textarea:focus,
+.admin-field select:focus {
+  outline: none;
+  border-color: var(--color-fg);
+}
+
+.admin-field__hint {
+  font-size: 0.75rem;
+  color: var(--color-muted-fg);
+  margin: 0;
+}
+
+.admin-field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+.admin-checkbox {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-size: 0.9rem;
+  font-weight: 400;
+}
+
+.admin-checkbox input {
+  width: auto;
+}
+
+.admin-image-preview {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+  margin-top: 0.5rem;
+  border: 1px solid var(--color-border);
+}
+
+.admin-form-error {
+  background: #fbe9e7;
+  color: #8a2c22;
+  padding: 0.6rem 0.85rem;
+  font-size: 0.85rem;
+}
+
+.admin-modal__actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 0.75rem;
+  margin-top: 0.5rem;
+}
+
+@media (max-width: 640px) {
+  .admin-field-row {
+    grid-template-columns: 1fr;
+  }
+}

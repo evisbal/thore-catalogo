@@ -535,6 +535,23 @@ main {
   color: var(--color-fg);
 }
 
+.product-card__price--original {
+  color: var(--color-muted-fg);
+  text-decoration: line-through;
+  margin-left: 0.4rem;
+  font-weight: 400;
+}
+
+/* Estado de carga / vacío / error en secciones que se llenan por JS
+   (catálogo, destacados, detalle de producto, panel de admin). */
+.catalog-empty {
+  padding: 3rem 1.5rem;
+  text-align: center;
+  color: var(--color-muted-fg);
+  font-size: 0.9rem;
+  grid-column: 1 / -1;
+}
+
 .product-card__meta {
   display: flex;
   align-items: baseline;
@@ -764,6 +781,12 @@ main {
   background: var(--color-muted);
   color: var(--color-muted-fg);
   cursor: not-allowed;
+}
+
+.btn--ghost {
+  background: transparent;
+  color: var(--color-fg);
+  border: 1px solid var(--color-border);
 }
 
 /* ---------- Relacionados ---------- */

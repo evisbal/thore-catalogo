@@ -51,28 +51,8 @@
       <div class="featured">
         <h2 class="featured__headline">Productos hechos con cuidado, para cada ocasión.</h2>
 
-        <div class="featured__grid">
-          <a href="producto.html" class="product-card">
-            <div class="product-card__image">
-              <img src="assets/img/productos/golden-mist-pair.jpg" alt="Producto destacado 1" loading="lazy" />
-            </div>
-            <h3 class="product-card__title product-card__title--light">Producto destacado 1</h3>
-            <p class="product-card__price">$50.00</p>
-          </a>
-          <a href="producto.html" class="product-card">
-            <div class="product-card__image">
-              <img src="assets/img/productos/milk-dip-cup.jpg" alt="Producto destacado 2" loading="lazy" />
-            </div>
-            <h3 class="product-card__title product-card__title--light">Producto destacado 2</h3>
-            <p class="product-card__price">$50.00</p>
-          </a>
-          <a href="producto.html" class="product-card">
-            <div class="product-card__image">
-              <img src="assets/img/productos/harvest-moon-cup.jpg" alt="Producto destacado 3" loading="lazy" />
-            </div>
-            <h3 class="product-card__title product-card__title--light">Producto destacado 3</h3>
-            <p class="product-card__price">$50.00</p>
-          </a>
+        <div class="featured__grid" data-featured-grid>
+          <p class="catalog-empty">Cargando productos…</p>
         </div>
       </div>
     </section>
@@ -140,5 +120,9 @@
   </footer>
 
   <script src="assets/js/header.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="assets/js/supabase-client.js"></script>
+  <script src="assets/js/product-card.js"></script>
+  <script src="assets/js/home-products.js"></script>
 </body>
 </html>

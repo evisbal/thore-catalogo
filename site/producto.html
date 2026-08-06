@@ -37,78 +37,42 @@
 
   <main id="main">
 
-    <section class="section">
-      <nav class="breadcrumb" aria-label="Miga de pan">
-        <a href="catalogo.html">Catálogo</a>
-        <span class="breadcrumb__sep">›</span>
-        <span class="breadcrumb__current">Producto 1</span>
-      </nav>
+    <div data-product-root>
+      <section class="section">
+        <nav class="breadcrumb" aria-label="Miga de pan">
+          <a href="catalogo.html">Catálogo</a>
+          <span class="breadcrumb__sep">›</span>
+          <span class="breadcrumb__current" data-breadcrumb-current>Cargando…</span>
+        </nav>
 
-      <div class="product-detail">
+        <div class="product-detail">
 
-        <div class="product-detail__image">
-          <img src="assets/img/productos/spring-blade.jpg" alt="Producto 1" />
+          <div class="product-detail__image">
+            <img data-product-image src="assets/img/favicon.png" alt="" />
+          </div>
+
+          <div>
+            <h1 class="product-detail__name" data-product-name></h1>
+            <p class="product-detail__price" data-product-price></p>
+
+            <p class="product-detail__availability" data-product-availability hidden></p>
+
+            <p class="product-detail__description" data-product-description></p>
+
+            <!-- Modo catálogo: sin selector de cantidad ni "Agregar al carrito".
+                 El botón de WhatsApp lo arma producto.js con el nombre real
+                 del producto (o el estado "Agotado" si corresponde). -->
+            <div data-product-cta-wrap></div>
+          </div>
         </div>
+      </section>
 
-        <div>
-          <h1 class="product-detail__name">Producto 1</h1>
-          <p class="product-detail__price">$50.00</p>
-
-          <!-- Ejemplo de estado de disponibilidad, opcional por producto -->
-          <!-- <p class="product-detail__availability">Sólo 4 disponibles</p> -->
-
-          <p class="product-detail__description">
-            Descripción del producto: materiales, medidas, variantes y todo lo
-            que ayude a la persona a decidir. Este texto se reemplaza por la
-            descripción real de cada producto cuando se cargue en WooCommerce.
-          </p>
-
-          <!-- Modo catálogo: sin selector de cantidad ni "Agregar al carrito".
-               El botón lleva a WhatsApp con un mensaje pre-armado. -->
-          <a
-            href="https://wa.me/000000000000?text=Hola%2C%20me%20interesa%20el%20producto%3A%20Producto%201"
-            class="btn btn--accent btn--block"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Consultar por WhatsApp
-            <svg class="icon-whatsapp" viewBox="0 0 16 16" width="16" height="16" fill="currentColor" aria-hidden="true" focusable="false"><path d="M13.601 2.326A7.85 7.85 0 0 0 7.994 0C3.627 0 .068 3.558.064 7.926c0 1.399.366 2.76 1.057 3.965L0 16l4.204-1.102a7.9 7.9 0 0 0 3.79.965h.004c4.368 0 7.926-3.558 7.93-7.93A7.9 7.9 0 0 0 13.6 2.326zM7.994 14.521a6.6 6.6 0 0 1-3.356-.92l-.24-.144-2.494.654.666-2.433-.156-.251a6.56 6.56 0 0 1-1.007-3.505c0-3.626 2.957-6.584 6.591-6.584a6.56 6.56 0 0 1 4.66 1.931 6.56 6.56 0 0 1 1.928 4.66c-.004 3.639-2.961 6.592-6.592 6.592m3.615-4.934c-.197-.099-1.17-.578-1.353-.646-.182-.065-.315-.099-.445.099-.133.197-.513.646-.627.775-.114.133-.232.148-.43.05-.197-.1-.836-.308-1.592-.985-.59-.525-.985-1.175-1.103-1.372-.114-.198-.011-.304.088-.403.087-.088.197-.232.296-.346.1-.114.133-.198.198-.33.065-.134.034-.248-.015-.347-.05-.099-.445-1.076-.612-1.47-.16-.389-.323-.335-.445-.34q-.171-.007-.334-.007c-.114 0-.297.043-.454.213-.155.17-.596.582-.596 1.418 0 .836.61 1.64.696 1.752.086.114 1.204 1.837 2.919 2.577.408.176.727.28.976.36.41.13.784.11 1.079.067.329-.049 1.014-.414 1.157-.815.144-.4.144-.744.101-.815-.043-.072-.156-.116-.328-.202"/></svg>
-          </a>
-
-          <!-- Variante para cuando el producto está agotado:
-          <button class="btn btn--disabled btn--block" disabled>Agotado</button>
-          -->
-        </div>
-      </div>
-    </section>
-
-    <!-- ================= RELACIONADOS ================= -->
-    <section class="related">
-      <h2>También te puede interesar</h2>
-      <div class="related__grid">
-        <a href="producto.html" class="product-card">
-          <div class="product-card__image">
-            <img src="assets/img/productos/classic-set.jpg" alt="Producto 2" loading="lazy" />
-          </div>
-          <h3 class="product-card__title">Producto 2</h3>
-          <p class="product-card__price">$50.00</p>
-        </a>
-        <a href="producto.html" class="product-card">
-          <div class="product-card__image">
-            <img src="assets/img/productos/country-feast-set.jpg" alt="Producto 3" loading="lazy" />
-          </div>
-          <h3 class="product-card__title">Producto 3</h3>
-          <p class="product-card__price">$50.00</p>
-        </a>
-        <a href="producto.html" class="product-card">
-          <div class="product-card__image">
-            <img src="assets/img/productos/golden-blush-cup.jpg" alt="Producto 5" loading="lazy" />
-          </div>
-          <h3 class="product-card__title">Producto 5</h3>
-          <p class="product-card__price">$50.00</p>
-        </a>
-      </div>
-    </section>
+      <!-- ================= RELACIONADOS ================= -->
+      <section class="related" data-related-section>
+        <h2>También te puede interesar</h2>
+        <div class="related__grid" data-related-grid></div>
+      </section>
+    </div>
 
   </main>
 
@@ -141,5 +105,9 @@
   </footer>
 
   <script src="assets/js/header.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="assets/js/supabase-client.js"></script>
+  <script src="assets/js/product-card.js"></script>
+  <script src="assets/js/producto.js"></script>
 </body>
 </html>

@@ -1,0 +1,120 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Productos | Panel de admin Thoré</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="../assets/img/favicon.png" type="image/png" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <link rel="stylesheet" href="../assets/css/admin.css" />
+</head>
+<body class="admin-body">
+
+  <header class="admin-header">
+    <a href="../index.html" class="admin-header__logo">
+      <img src="../assets/img/logo-negro.png" alt="Thoré" />
+    </a>
+    <div class="admin-header__right">
+      <span data-admin-email class="admin-header__email"></span>
+      <button type="button" class="btn btn--ghost" data-logout>Cerrar sesión</button>
+    </div>
+  </header>
+
+  <main class="admin-main">
+    <div class="admin-main__bar">
+      <h1>Productos</h1>
+      <button type="button" class="btn btn--accent" data-new-product>+ Nuevo producto</button>
+    </div>
+
+    <div data-product-list class="admin-table-wrap">
+      <p class="catalog-empty">Cargando productos…</p>
+    </div>
+  </main>
+
+  <!-- Panel de alta / edición -->
+  <div class="admin-modal" data-product-modal hidden>
+    <div class="admin-modal__backdrop" data-modal-close></div>
+    <form class="admin-modal__panel" data-product-form novalidate>
+      <div class="admin-modal__header">
+        <h2 data-form-title>Nuevo producto</h2>
+        <button type="button" class="admin-modal__close" data-modal-close aria-label="Cerrar">&times;</button>
+      </div>
+
+      <input type="hidden" name="id" />
+
+      <div class="admin-field">
+        <label for="f-name">Nombre</label>
+        <input id="f-name" name="name" required />
+      </div>
+
+      <div class="admin-field">
+        <label for="f-slug">Slug (URL del producto)</label>
+        <input id="f-slug" name="slug" required pattern="[a-z0-9-]+" />
+        <p class="admin-field__hint">Sólo minúsculas, números y guiones. Ej: cartera-tejida-negra</p>
+      </div>
+
+      <div class="admin-field-row">
+        <div class="admin-field">
+          <label for="f-price">Precio</label>
+          <input id="f-price" name="price" type="number" step="0.01" min="0" required />
+        </div>
+        <div class="admin-field">
+          <label for="f-original-price">Precio anterior (opcional)</label>
+          <input id="f-original-price" name="original_price" type="number" step="0.01" min="0" />
+        </div>
+      </div>
+
+      <div class="admin-field">
+        <label for="f-description">Descripción</label>
+        <textarea id="f-description" name="description" rows="4"></textarea>
+      </div>
+
+      <div class="admin-field-row">
+        <div class="admin-field">
+          <label for="f-category">Categoría (opcional)</label>
+          <input id="f-category" name="category" />
+        </div>
+        <div class="admin-field">
+          <label for="f-badge">Estado</label>
+          <select id="f-badge" name="badge">
+            <option value="">Ninguno</option>
+            <option value="sale">Oferta</option>
+            <option value="sold-out">Agotado</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="admin-field">
+        <label for="f-availability">Texto de disponibilidad (opcional)</label>
+        <input id="f-availability" name="availability" placeholder="Ej: Sólo 4 disponibles" />
+      </div>
+
+      <div class="admin-field">
+        <label class="admin-checkbox">
+          <input type="checkbox" name="featured" />
+          Mostrar en destacados de la home
+        </label>
+      </div>
+
+      <div class="admin-field">
+        <label for="f-image">Foto</label>
+        <input id="f-image" name="image_file" type="file" accept="image/*" />
+        <img data-image-preview class="admin-image-preview" hidden alt="Vista previa" />
+      </div>
+
+      <p class="admin-form-error" data-form-error hidden></p>
+
+      <div class="admin-modal__actions">
+        <button type="button" class="btn btn--ghost" data-modal-close>Cancelar</button>
+        <button type="submit" class="btn btn--accent" data-submit-btn>Guardar</button>
+      </div>
+    </form>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="../assets/js/supabase-client.js"></script>
+  <script src="../assets/js/product-card.js"></script>
+  <script src="../assets/js/admin-dashboard.js"></script>
+</body>
+</html>

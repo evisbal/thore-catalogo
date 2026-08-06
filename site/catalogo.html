@@ -42,104 +42,8 @@
     </div>
 
     <div class="container">
-      <div class="catalog-grid">
-
-        <!-- NOTA: cada tarjeta se repite por producto. En WordPress esto
-             será un loop de WooCommerce (archive-product.php). -->
-
-        <a href="producto.html" class="product-card">
-          <div class="product-card__image">
-            <img src="assets/img/productos/spring-blade.jpg" alt="Producto 1" loading="lazy" />
-          </div>
-          <div class="product-card__meta">
-            <h2 class="product-card__title">Producto 1</h2>
-          </div>
-          <p class="product-card__price">$50.00</p>
-        </a>
-
-        <a href="producto.html" class="product-card">
-          <div class="product-card__image">
-            <img src="assets/img/productos/classic-set.jpg" alt="Producto 2" loading="lazy" />
-          </div>
-          <div class="product-card__meta">
-            <h2 class="product-card__title">Producto 2</h2>
-          </div>
-          <p class="product-card__price">$50.00</p>
-        </a>
-
-        <a href="producto.html" class="product-card">
-          <div class="product-card__image">
-            <img src="assets/img/productos/country-feast-set.jpg" alt="Producto 3" loading="lazy" />
-          </div>
-          <div class="product-card__meta">
-            <h2 class="product-card__title">Producto 3</h2>
-          </div>
-          <p class="product-card__price">$50.00</p>
-        </a>
-
-        <a href="producto.html" class="product-card">
-          <div class="product-card__image">
-            <img src="assets/img/productos/earth-sky-planter.jpg" alt="Producto 4" loading="lazy" />
-          </div>
-          <div class="product-card__meta">
-            <h2 class="product-card__title">Producto 4</h2>
-            <span class="badge">Oferta</span>
-          </div>
-          <p class="product-card__price">$40.00</p>
-        </a>
-
-        <a href="producto.html" class="product-card">
-          <div class="product-card__image">
-            <img src="assets/img/productos/golden-blush-cup.jpg" alt="Producto 5" loading="lazy" />
-          </div>
-          <div class="product-card__meta">
-            <h2 class="product-card__title">Producto 5</h2>
-          </div>
-          <p class="product-card__price">$50.00</p>
-        </a>
-
-        <a href="producto.html" class="product-card">
-          <div class="product-card__image">
-            <img src="assets/img/productos/harvest-moon-cup.jpg" alt="Producto 6" loading="lazy" />
-          </div>
-          <div class="product-card__meta">
-            <h2 class="product-card__title">Producto 6</h2>
-            <span class="badge badge--muted">Últimas unidades</span>
-          </div>
-          <p class="product-card__price">$50.00</p>
-        </a>
-
-        <a href="producto.html" class="product-card">
-          <div class="product-card__image">
-            <img src="assets/img/productos/milk-dip-cup.jpg" alt="Producto 7" loading="lazy" />
-          </div>
-          <div class="product-card__meta">
-            <h2 class="product-card__title">Producto 7</h2>
-          </div>
-          <p class="product-card__price">$50.00</p>
-        </a>
-
-        <a href="producto.html" class="product-card">
-          <div class="product-card__image">
-            <img src="assets/img/productos/salt-spout.jpg" alt="Producto 8" loading="lazy" />
-          </div>
-          <div class="product-card__meta">
-            <h2 class="product-card__title">Producto 8</h2>
-            <span class="badge">Agotado</span>
-          </div>
-          <p class="product-card__price">$50.00</p>
-        </a>
-
-        <a href="producto.html" class="product-card">
-          <div class="product-card__image">
-            <img src="assets/img/productos/golden-mist-pair.jpg" alt="Producto 9" loading="lazy" />
-          </div>
-          <div class="product-card__meta">
-            <h2 class="product-card__title">Producto 9</h2>
-          </div>
-          <p class="product-card__price">$50.00</p>
-        </a>
-
+      <div class="catalog-grid" data-catalog-grid>
+        <p class="catalog-empty">Cargando productos…</p>
       </div>
     </div>
 
@@ -174,5 +78,9 @@
   </footer>
 
   <script src="assets/js/header.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="assets/js/supabase-client.js"></script>
+  <script src="assets/js/product-card.js"></script>
+  <script src="assets/js/catalogo.js"></script>
 </body>
 </html>

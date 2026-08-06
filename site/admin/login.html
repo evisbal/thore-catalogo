@@ -1,0 +1,37 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ingresar | Panel de admin Thoré</title>
+  <meta name="robots" content="noindex, nofollow" />
+  <link rel="icon" href="../assets/img/favicon.png" type="image/png" />
+  <link rel="stylesheet" href="../assets/css/styles.css" />
+  <link rel="stylesheet" href="../assets/css/admin.css" />
+</head>
+<body class="admin-body admin-body--center">
+
+  <form class="admin-login-card" data-login-form>
+    <img src="../assets/img/logo-negro.png" alt="Thoré" class="admin-login-card__logo" />
+    <h1>Panel de admin</h1>
+
+    <div class="admin-field">
+      <label for="f-email">Email</label>
+      <input id="f-email" type="email" required autocomplete="username" />
+    </div>
+
+    <div class="admin-field">
+      <label for="f-password">Contraseña</label>
+      <input id="f-password" type="password" required autocomplete="current-password" />
+    </div>
+
+    <p class="admin-form-error" data-login-error hidden></p>
+
+    <button type="submit" class="btn btn--accent" data-login-submit>Ingresar</button>
+  </form>
+
+  <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2/dist/umd/supabase.min.js"></script>
+  <script src="../assets/js/supabase-client.js"></script>
+  <script src="../assets/js/admin-login.js"></script>
+</body>
+</html>
