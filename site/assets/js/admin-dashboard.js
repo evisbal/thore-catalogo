@@ -76,11 +76,11 @@
             .map(
               (p) => `
             <tr>
-              <td><img class="admin-table__thumb" src="${escapeHTML(p.image_url || "../assets/img/favicon.png")}" alt="" /></td>
-              <td>${escapeHTML(p.name)}</td>
-              <td>${formatPrice(p.price)}</td>
-              <td>${p.badge === "sale" ? "Oferta" : p.badge === "sold-out" ? "Agotado" : "—"}</td>
-              <td>${p.featured ? "Sí" : "—"}</td>
+              <td class="admin-table__thumb-cell"><img class="admin-table__thumb" src="${escapeHTML(p.image_url || "../assets/img/favicon.png")}" alt="" /></td>
+              <td data-label="Nombre">${escapeHTML(p.name)}</td>
+              <td data-label="Precio">${formatPrice(p.price)}</td>
+              <td data-label="Estado">${p.badge === "sale" ? "Oferta" : p.badge === "sold-out" ? "Agotado" : "—"}</td>
+              <td data-label="Destacado">${p.featured ? "Sí" : "—"}</td>
               <td class="admin-table__actions">
                 <button type="button" class="admin-link-btn" data-edit="${p.id}">Editar</button>
                 <button type="button" class="admin-link-btn admin-link-btn--danger" data-delete="${p.id}">Borrar</button>
