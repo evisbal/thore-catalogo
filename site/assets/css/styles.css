@@ -927,6 +927,57 @@ main {
   flex-shrink: 0;
 }
 
+/* ---------- Página 404 ---------- */
+
+.error-page {
+  max-width: 30rem;
+  margin: 0 auto;
+  padding: 6rem 1.5rem 8rem;
+  text-align: center;
+}
+
+.error-page__code {
+  font-size: 0.8rem;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.12em;
+  color: var(--color-accent);
+  margin: 0 0 1rem;
+}
+
+.error-page h1 {
+  font-size: clamp(1.75rem, 4vw, 2.5rem);
+  font-weight: 300;
+  line-height: 1.25;
+  margin: 0 0 1rem;
+}
+
+.error-page > p {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-muted-fg);
+  margin: 0 0 2.5rem;
+}
+
+.error-page__actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 1rem;
+  margin-bottom: 2.5rem;
+}
+
+.error-page__help {
+  font-size: 0.85rem;
+  color: var(--color-muted-fg);
+  margin: 0 !important;
+}
+
+.error-page__help a {
+  color: var(--color-fg);
+  text-decoration: underline;
+}
+
 /* ---------- Utilidades ---------- */
 
 .text-center {
