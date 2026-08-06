@@ -54,7 +54,7 @@
     );
     ctaWrap.innerHTML = `
       <a
-        href="https://wa.me/000000000000?text=${message}"
+        href="https://wa.me/573015141227?text=${message}"
         class="btn btn--accent btn--block"
         target="_blank"
         rel="noopener noreferrer"
