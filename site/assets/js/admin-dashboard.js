@@ -41,21 +41,28 @@
   // ---- Cargar y listar ----
   async function loadProducts() {
     listEl.innerHTML = `<p class="catalog-empty">Cargando productos…</p>`;
-    const { data, error } = await db
-      .from("products")
-      .select("*")
-      .order("sort_order", { ascending: true })
-      .order("created_at", { ascending: false });
 
-    if (error) {
-      listEl.innerHTML = `<p class="catalog-empty">Error al cargar: ${escapeHTML(error.message)}</p>`;
+    let data;
+    try {
+      const result = await db
+        .from("products")
+        .select("*")
+        .order("sort_order", { ascending: true })
+        .order("created_at", { ascending: false });
+      if (result.error) throw result.error;
+      data = result.data;
+    } catch (err) {
+      // Cubre errores de la API y fallas de red (ej. el proyecto de
+      // Supabase pausado/caído), que de otro modo dejaban la lista
+      // trabada en "Cargando productos…" para siempre.
+      listEl.innerHTML = `<p class="catalog-empty">Error al cargar: ${escapeHTML(err.message || "no se pudo conectar con Supabase")}</p>`;
       return;
     }
 
     products = data || [];
 
     if (products.length === 0) {
-      listEl.innerHTML = `<p class="catalog-empty">Todavía no cargaste ningún producto. Usá "+ Nuevo producto" para empezar.</p>`;
+      listEl.innerHTML = `<p class="catalog-empty">Todavía no cargaste ningún producto. Usa "+ Nuevo producto" para empezar.</p>`;
       return;
     }
 

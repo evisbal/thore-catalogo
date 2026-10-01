@@ -13,14 +13,26 @@
     return;
   }
 
-  const { data: product, error } = await db
-    .from("products")
-    .select("*")
-    .eq("slug", slug)
-    .maybeSingle();
+  let product;
+  try {
+    const { data, error } = await db
+      .from("products")
+      .select("*")
+      .eq("slug", slug)
+      .maybeSingle();
 
-  if (error || !product) {
-    if (error) console.error(error);
+    if (error) throw error;
+    product = data;
+  } catch (err) {
+    // Cubre tanto "no existe ese producto" como fallas de red (ej.
+    // el proyecto de Supabase caído), que de otro modo dejaban la
+    // página en blanco en vez de mostrar un mensaje claro.
+    console.error(err);
+    root.innerHTML = `<p class="catalog-empty">No pudimos cargar este producto. Intenta recargar la página o <a href="catalogo.html">volver al catálogo</a>.</p>`;
+    return;
+  }
+
+  if (!product) {
     root.innerHTML = `<p class="catalog-empty">No encontramos ese producto. <a href="catalogo.html">Volver al catálogo</a>.</p>`;
     return;
   }
@@ -65,19 +77,28 @@
     `;
   }
 
-  // Relacionados: hasta 3 productos, excluyendo el actual.
-  const { data: related } = await db
-    .from("products")
-    .select("*")
-    .neq("slug", slug)
-    .limit(3);
-
+  // Relacionados: hasta 3 productos, excluyendo el actual. Si esto
+  // falla no es grave — el producto principal ya se mostró — así
+  // que simplemente ocultamos la sección en vez de romper la página.
   const relatedSection = document.querySelector("[data-related-section]");
-  if (related && related.length > 0) {
-    document.querySelector("[data-related-grid]").innerHTML = related
-      .map((p) => productCardHTML(p, "h3"))
-      .join("");
-  } else if (relatedSection) {
-    relatedSection.hidden = true;
+  try {
+    const { data: related, error } = await db
+      .from("products")
+      .select("*")
+      .neq("slug", slug)
+      .limit(3);
+
+    if (error) throw error;
+
+    if (related && related.length > 0) {
+      document.querySelector("[data-related-grid]").innerHTML = related
+        .map((p) => productCardHTML(p, "h3"))
+        .join("");
+    } else if (relatedSection) {
+      relatedSection.hidden = true;
+    }
+  } catch (err) {
+    console.error(err);
+    if (relatedSection) relatedSection.hidden = true;
   }
 })();

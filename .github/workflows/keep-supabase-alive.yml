@@ -1,8 +1,14 @@
 name: Keep Supabase project alive
 
 # Supabase pausa proyectos free-tier después de 7 días sin actividad.
-# Este workflow le hace un pedido de lectura liviano a la API cada 2
-# días (margen de sobra) para que el proyecto nunca se pause.
+# Este workflow actualiza una fila "heartbeat" cada 2 días (margen de
+# sobra) para que el proyecto nunca se pause.
+#
+# Antes esto era un simple SELECT de lectura — corrió sin fallar
+# durante semanas y el proyecto se pausó igual, así que un read
+# anónimo no cuenta como "actividad" para Supabase. Este UPDATE sí
+# escribe de verdad en la base (ver supabase/schema.sql, tabla
+# heartbeat).
 #
 # La "anon key" usada acá es la misma que ya vive en el código público
 # del sitio (assets/js/supabase-client.js) — está diseñada para ser
@@ -18,8 +24,12 @@ jobs:
   ping:
     runs-on: ubuntu-latest
     steps:
-      - name: Ping Supabase REST API
+      - name: Update heartbeat row in Supabase
         run: |
-          curl -sf "https://jcsmbklwsgzsohqkftfy.supabase.co/rest/v1/products?select=id&limit=1" \
-            -H "apikey: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impjc21ia2x3c2d6c29ocWtmdGZ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYwMjc4MjUsImV4cCI6MjEwMTYwMzgyNX0.cx-XdztGsNP07xFpdWYxFQIbevOh0EWzRpqQD5p3LkI"
-          echo "Ping OK — $(date -u)"
+          ANON_KEY="eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6Impjc21ia2x3c2d6c29ocWtmdGZ5Iiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYwMjc4MjUsImV4cCI6MjEwMTYwMzgyNX0.cx-XdztGsNP07xFpdWYxFQIbevOh0EWzRpqQD5p3LkI"
+          curl -sf -X PATCH "https://jcsmbklwsgzsohqkftfy.supabase.co/rest/v1/heartbeat?id=eq.1" \
+            -H "apikey: $ANON_KEY" \
+            -H "Authorization: Bearer $ANON_KEY" \
+            -H "Content-Type: application/json" \
+            -d "{\"pinged_at\": \"$(date -u +%Y-%m-%dT%H:%M:%SZ)\"}"
+          echo "Heartbeat updated OK — $(date -u)"

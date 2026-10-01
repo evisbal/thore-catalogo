@@ -84,3 +84,39 @@ drop policy if exists "Authenticated delete product images" on storage.objects;
 create policy "Authenticated delete product images"
 on storage.objects for delete
 using (bucket_id = 'product-images' and auth.role() = 'authenticated');
+
+-- ============================================================
+-- Heartbeat — fila única que el GitHub Action de keep-alive
+-- actualiza cada 2 días. Un simple SELECT anónimo no evitó que
+-- Supabase pausara el proyecto por inactividad (lo confirmamos:
+-- el ping corrió bien varias semanas y aun así se pausó), así
+-- que acá hacemos un UPDATE real, que sí cuenta como actividad.
+--
+-- Nota de seguridad: la política de UPDATE es pública a propósito
+-- (sin esto, el ping necesitaría credenciales de admin). El único
+-- riesgo es que cualquiera pueda pisar el timestamp de esta fila
+-- puntual, que no tiene ningún dato de negocio — no afecta a
+-- productos, fotos, ni nada sensible.
+-- ============================================================
+
+create table if not exists heartbeat (
+  id int primary key,
+  pinged_at timestamptz not null default now()
+);
+
+insert into heartbeat (id, pinged_at)
+values (1, now())
+on conflict (id) do nothing;
+
+alter table heartbeat enable row level security;
+
+drop policy if exists "Public read heartbeat" on heartbeat;
+create policy "Public read heartbeat"
+on heartbeat for select
+using (true);
+
+drop policy if exists "Public update heartbeat" on heartbeat;
+create policy "Public update heartbeat"
+on heartbeat for update
+using (true)
+with check (true);
